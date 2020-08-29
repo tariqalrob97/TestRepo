@@ -6,6 +6,9 @@ public class Main {
 
 		System.out.print("Test");
 		System.out.print("test2");
+		System.out.print("test3");
+		System.out.print("test4");
+
 		///Comment
 		
 	}
