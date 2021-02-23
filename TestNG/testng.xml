@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Suite" parallel="tests">
+  <test name="Test A">
+  <classes>
+  <class name="testcases.TestA"></class>
+  </classes>
+  </test> <!-- Test -->
+   <test name="Test B">
+  <classes>
+  <class name="testcases.TestB"></class>
+  </classes>
+  </test> <!-- Test -->
+  
+   <test name="Test C">
+  <classes>
+  <class name="testcases.TestC"></class>
+  </classes>
+  </test> <!-- Test -->
+  
+   <test name="ChromeBrowser">
+  <classes>
+  <class name="ChromeBrowser.LaunchApplication"></class>
+  </classes>
+  </test> <!-- Test -->
+  
+  
+</suite> <!-- Suite -->
