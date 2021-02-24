@@ -14,7 +14,7 @@ public class LaunchApplication {
 	@Test
 	public void facebookTest()
 	{
-		System.setProperty("webdriver.chrome.driver", "C:\\Users\\Zahera\\git\\TestRepo\\TestNG\\Driver\\chromedriver.exe");
+		System.setProperty("webdriver.chrome.driver", "Driver\\chromedriver.exe");
 		final DesiredCapabilities dc = DesiredCapabilities.chrome();
 		Properties properties = new Properties();
 	       try(FileReader reader =  new FileReader("config")) {
