@@ -17,6 +17,11 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+
+import Selectors.homeSelectors;
+import Selectors.productSelectors;
+import Selectors.searchResultSelectors;
+
 import org.openqa.selenium.interactions.Actions;
 
 import Utils.LibraryUtils;
@@ -61,43 +66,71 @@ public class homePage {
 		
 		System.out.println(driver.getTitle());
 		
-		
+		LibraryUtils.waitForElementToBeClickable(driver, driver.findElement(By.cssSelector(homeSelectors.locationButton)), 25).click();//click to add to cart button
+
+		try {
+			Thread.sleep(10000);
+		} 
+		catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 		
 		try {//Test if the main elements are loaded correctly
 		
-		LibraryUtils.waitForElementToBeVisible(driver, driver.findElement(By.cssSelector("#headerBox > div.t-header__bar > div > div.t-header-top.u-flexbox.u-width-full.u-padding-sm > div.u-flexbox.u-width-full.t-header-bar__title > div > a > div.pw-dangerous-html > div > svg")), 25);//logo
+		LibraryUtils.waitForElementToBeVisible(driver, driver.findElement(By.cssSelector(homeSelectors.logo)), 25);//logo
 		
-		LibraryUtils.waitForElementToBeVisible(driver, driver.findElement(By.cssSelector("#headerBox > div.t-header__bar > div > div.t-header-top.u-flexbox.u-width-full.u-padding-sm > div.pw-header-bar__actions.t-header-bar__cart > button")), 25);//The order icon
+		LibraryUtils.waitForElementToBeVisible(driver, driver.findElement(By.cssSelector(homeSelectors.orderIcon)), 25);//The order icon
 	
-		LibraryUtils.waitForElementToBeVisible(driver, driver.findElement(By.cssSelector("#pwa-my-account-button > button")), 25);//account button
+		LibraryUtils.waitForElementToBeVisible(driver, driver.findElement(By.cssSelector(homeSelectors.menu)), 25);//menu
 		
-		LibraryUtils.waitForElementToBeVisible(driver, driver.findElement(By.cssSelector("#headerBox > div.t-header__bar > div > div.t-header-bottom.u-flexbox.u-width-full > div:nth-child(2) > button")), 25);//search button
+		LibraryUtils.waitForElementToBeVisible(driver, driver.findElement(By.cssSelector(homeSelectors.searchArea)), 25);//searchArea
 	
-		LibraryUtils.waitForElementToBeVisible(driver, driver.findElement(By.cssSelector("#pwa-shop-nav-button > button")), 25);//shop
+		LibraryUtils.waitForElementToBeVisible(driver, driver.findElement(By.cssSelector(homeSelectors.stores)), 25);//stores
 		
-		LibraryUtils.waitForElementToBeVisible(driver, driver.findElement(By.cssSelector("#main-link > img")), 25);// maim image
+		LibraryUtils.waitForElementToBeVisible(driver, driver.findElement(By.cssSelector(homeSelectors.shopNow)), 25);//  shopNow
 
-		LibraryUtils.waitForElementToBeVisible(driver, driver.findElement(By.cssSelector("#row-catgegoy-grid")), 25);// category grid
+		LibraryUtils.waitForElementToBeVisible(driver, driver.findElement(By.cssSelector(homeSelectors.easter)), 25);// easter
 		
-		LibraryUtils.waitForElementToBeVisible(driver, driver.findElement(By.cssSelector("#module4 > div > div.row.edgey.flex-vertical-align > div.col-lg-9.col-sm-8.col-sm-7.col-xs-12")), 25);
+		LibraryUtils.waitForElementToBeVisible(driver, driver.findElement(By.cssSelector(homeSelectors.sewing)), 25);//sewing
 	
-    	LibraryUtils.waitForElementToBeVisible(driver, driver.findElement(By.cssSelector("#module4 > div > div.row.edgey.flex-vertical-align > div.col-lg-3.col-sm-4.col-xs-12.text-center")), 25);
+    	LibraryUtils.waitForElementToBeVisible(driver, driver.findElement(By.cssSelector(homeSelectors.paperCraft)), 25);//paperCraft
 		
-		LibraryUtils.waitForElementToBeVisible(driver, driver.findElement(By.cssSelector("#module4 > div > div.contentModule.template1.theme1 > div > div:nth-child(1)")), 25);
+		LibraryUtils.waitForElementToBeVisible(driver, driver.findElement(By.cssSelector(homeSelectors.baking)), 25);//baking
 		
-		LibraryUtils.waitForElementToBeVisible(driver, driver.findElement(By.cssSelector("#field-0")), 25);//sign up by email textbox 
+		LibraryUtils.waitForElementToBeVisible(driver, driver.findElement(By.cssSelector(homeSelectors.kids)), 25);//kids 
 
-		LibraryUtils.waitForElementToBeVisible(driver, driver.findElement(By.cssSelector("#EmailSignUpForm > div > div.t-footer__newsletter-button-panel.u-margin-start-sm > button")), 25);//sign up by email button
+		LibraryUtils.waitForElementToBeVisible(driver, driver.findElement(By.cssSelector(homeSelectors.knittingAndCrochet)), 25);//knittingAndCrochet
 
-		LibraryUtils.waitForElementToBeVisible(driver, driver.findElement(By.cssSelector("#app-footer > footer > div.u-bg-color-neutral-00.u-margin-top-lg.u-margin-bottom-lg.u-padding-start-lg.u-padding-end-lg > div > button")), 25);// shipping location
+		LibraryUtils.waitForElementToBeVisible(driver, driver.findElement(By.cssSelector(homeSelectors.craftsAndHobbies)), 25);// craftsAndHobbies
 
-    	LibraryUtils.waitForElementToBeVisible(driver, driver.findElement(By.cssSelector("#app-footer > footer > div.t-footer__phone.u-margin-bottom-lg.u-text-size-medium.u-flex-none > div.u-flexbox > div.t-footer__phone-number > a")), 25);//phone number
+    	LibraryUtils.waitForElementToBeVisible(driver, driver.findElement(By.cssSelector(homeSelectors.digitalCutting)), 25);//digitalCutting
 
-		LibraryUtils.waitForElementToBeVisible(driver, driver.findElement(By.cssSelector("#app-footer > footer > div.t-footer__phone.u-margin-bottom-lg.u-text-size-medium.u-flex-none > div.c-egain__container > button > div > div > img")), 25);//chat
+		LibraryUtils.waitForElementToBeVisible(driver, driver.findElement(By.cssSelector(homeSelectors.artSupplies)), 25);//artSupplies
 
-		LibraryUtils.waitForElementToBeVisible(driver, driver.findElement(By.cssSelector("#app-footer > footer > div.t-footer__blogsection.u-flexbox > div > div > a:nth-child(1) > div")), 25);
+		LibraryUtils.waitForElementToBeVisible(driver, driver.findElement(By.cssSelector(homeSelectors.decorAndFrames)), 25);//decorAndFrames
 
-		LibraryUtils.waitForElementToBeVisible(driver, driver.findElement(By.cssSelector("#app-footer > footer > div.t-footer__blogsection.u-flexbox > div > div > a:nth-child(2) > div")), 25);
+		LibraryUtils.waitForElementToBeVisible(driver, driver.findElement(By.cssSelector(homeSelectors.wedding)), 25);//wedding
+		
+		LibraryUtils.waitForElementToBeVisible(driver, driver.findElement(By.cssSelector(homeSelectors.occations)), 25);//occations
+
+		LibraryUtils.waitForElementToBeVisible(driver, driver.findElement(By.cssSelector(homeSelectors.offers)), 25);//offers
+		
+		LibraryUtils.waitForElementToBeVisible(driver, driver.findElement(By.cssSelector(homeSelectors.ideas)), 25);//ideas
+
+		LibraryUtils.waitForElementToBeVisible(driver, driver.findElement(By.cssSelector(homeSelectors.mainImage)), 25);//mainImage
+		
+		LibraryUtils.waitForElementToBeVisible(driver, driver.findElement(By.cssSelector(homeSelectors.clearance)), 25);//clearance
+
+		LibraryUtils.waitForElementToBeVisible(driver, driver.findElement(By.cssSelector(homeSelectors.newArrivals)), 25);//newArrivals
+		
+		LibraryUtils.waitForElementToBeVisible(driver, driver.findElement(By.cssSelector(homeSelectors.trustpiolt)), 25);//trustpiolt
+
+		LibraryUtils.waitForElementToBeVisible(driver, driver.findElement(By.cssSelector(homeSelectors.like)), 25);//like
+		
+		LibraryUtils.waitForElementToBeVisible(driver, driver.findElement(By.cssSelector(homeSelectors.hobbycraftClub)), 25);//hobbycraftClub
+
+		
+		
 
 		}
 		catch (NoSuchElementException | TimeoutException  ex) {
@@ -110,39 +143,40 @@ public class homePage {
 	
 		try {//Test the search process
 			
-		
-		    LibraryUtils.waitForElementToBeClickable(driver, driver.findElement(By.cssSelector("#headerBox > div.t-header__bar > div > div.t-header-bottom.u-flexbox.u-width-full > div:nth-child(2) > button")), 25).click();
+		    LibraryUtils.waitForElementToBeClickable(driver, driver.findElement(By.cssSelector(homeSelectors.searchArea)), 25).click();
+			LibraryUtils.waitForElementToBeVisible(driver, driver.findElement(By.cssSelector(homeSelectors.searchTextbox)), 25).sendKeys(properties.getProperty("searchItem"));
 			
-			System.out.println(driver.getTitle());
-		
-			LibraryUtils.waitForElementToBeVisible(driver, driver.findElement(By.cssSelector("#search-0")), 25).sendKeys(properties.getProperty("searchItem"));
-			
-			try {
+			try {//sleep the thread to see the input
 				Thread.sleep(500);
 			} 
 			catch (InterruptedException e) {
 				e.printStackTrace();
 			}
 			
-			LibraryUtils.waitForElementToBeClickable(driver, driver.findElement(By.cssSelector("#search-0")), 1).sendKeys(Keys.ENTER);
-			
+			 LibraryUtils.waitForElementToBeClickable(driver, driver.findElement(By.cssSelector(homeSelectors.searchButton)), 25).click();//start the search by clicking the button
+//			LibraryUtils.waitForElementToBeClickable(driver, driver.findElement(By.cssSelector(homeSelectors.searchTextbox)), 1).sendKeys(Keys.ENTER);
+		
 			try {
-				Thread.sleep(10000);
+				Thread.sleep(30000);
 			} 
 			catch (InterruptedException e) {
 				e.printStackTrace();
 			}
 			
-			System.out.println(driver.getTitle());
+			LibraryUtils.waitForElementToBeClickable(driver, driver.findElement(By.cssSelector(searchResultSelectors.firstItem)), 25).click();//click to the first element
+//			Actions act = new Actions(driver);
+//			act.moveToElement(driver.findElement(By.xpath(searchResultSelectors.firstItem))).click().build().perform();
 			
-			
+			try {
+			Thread.sleep(30000);
+		} 
+		catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		
+		
+		LibraryUtils.waitForElementToBeClickable(driver, driver.findElement(By.cssSelector(productSelectors.addToCart)), 25).click();//click to add to cart button
 
-			//LibraryUtils.waitForElementToBeClickable(driver, driver.findElement(By.cssSelector("#app-main > div > div:nth-child(2) > div > div.pw-list.c-product-list-products.pw--borderless > article:nth-child(1) > div > div > div > div > div > article > a > div > div > img")), 25).click();
-			Actions act = new Actions(driver);
-			act.moveToElement(driver.findElement(By.xpath("//*[@id=\"app-main\"]/div/div[2]/div/div[2]/article[1]/div/div/div/div/div/article/a/div/div/img"))).click().build().perform();
-			
-			
-			
 		}
 		catch (NoSuchElementException | TimeoutException  ex) {
 		       
