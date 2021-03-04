@@ -12,7 +12,7 @@ public class LaunchApplication {
 	
     
 	@Test
-	public void facebookTest()
+	public void AutoSmokeTestingForHC()
 	{
 		System.setProperty("webdriver.chrome.driver", "Driver\\chromedriver.exe");
 		final DesiredCapabilities dc = DesiredCapabilities.chrome();
