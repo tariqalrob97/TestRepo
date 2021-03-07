@@ -25,14 +25,97 @@ import Selectors.searchResultSelectors;
 import org.openqa.selenium.interactions.Actions;
 
 import Utils.LibraryUtils;
+import template.initializingBrowser;
 
-public class homePage {
-
-    @Test
-	public void testHome()
+public class homePage implements initializingBrowser {
+	public void clickOnLocation(WebDriver driver)
 	{
-		System.setProperty("webdriver.chrome.driver", "Driver\\chromedriver.exe");
-		final DesiredCapabilities dc = DesiredCapabilities.chrome();
+		try {
+			Thread.sleep(50000);
+		} 
+		catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		LibraryUtils.waitForElementToBeClickable(driver, driver.findElement(By.cssSelector(homeSelectors.locationButton)), 25).click();//click to add to cart button
+	}
+	
+	
+	public void searchForItem(WebDriver driver, Properties properties)
+	{
+		try {
+	            LibraryUtils.waitForElementToBeClickable(driver, driver.findElement(By.cssSelector(homeSelectors.searchArea)), 25).click();
+				LibraryUtils.waitForElementToBeVisible(driver, driver.findElement(By.cssSelector(homeSelectors.searchTextbox)), 25).sendKeys(properties.getProperty("searchItem"));
+				
+				try {//sleep the thread to see the input
+					Thread.sleep(500);
+				} 
+				catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				
+				 LibraryUtils.waitForElementToBeClickable(driver, driver.findElement(By.cssSelector(homeSelectors.searchButton)), 25).click();//start the search by clicking the button
+			
+					
+		}
+		catch (NoSuchElementException | TimeoutException  ex) {
+		       
+	        Assert .fail("Failed to enter Item");
+
+	    }
+	}
+	
+	
+	public boolean clickOnProduct(WebDriver driver,Properties properties)
+	{
+		try {
+			Thread.sleep(30000);
+		} 
+		catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		
+		//test if the product match with the input of the search
+		String prodName=driver.findElement(By.cssSelector(searchResultSelectors.firstItem)).getText().toString();//get the product name
+		
+		if(prodName.endsWith(properties.getProperty("searchItem").toString())||prodName.startsWith(properties.getProperty("searchItem").toString()))
+		{
+			//click to the first element
+			try {
+				LibraryUtils.waitForElementToBeClickable(driver, driver.findElement(By.cssSelector(searchResultSelectors.firstItem)), 25).click();
+			}
+			catch (NoSuchElementException | TimeoutException  ex) {
+			       
+		        Assert .fail("Failed to click on the product");
+		    }
+			return true;
+		}
+		else {
+			 System.out.println("The search result does not match");
+			 return false;
+		}
+	}
+	
+	public void addToCart(WebDriver driver)
+	{
+		try {
+			Thread.sleep(30000);
+		} 
+		catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		try {
+		LibraryUtils.waitForElementToBeClickable(driver, driver.findElement(By.cssSelector(productSelectors.addToCart)), 25).click();//click to add to cart button
+		}
+		catch (NoSuchElementException | TimeoutException  ex) {
+		       
+	        Assert .fail("Failed to add to cart");
+	    }
+	}
+    @Test
+	public void testHome ()
+	{
+
+	final DesiredCapabilities dc = initializingBrowser.initializeChromeBrowser ();
 		Properties properties = new Properties();
 	       try(FileReader reader =  new FileReader("config")) {
 	           
@@ -41,35 +124,16 @@ public class homePage {
 	          }catch (Exception e) {;
 	          e.printStackTrace();
 	          }
-	     
-		
-		dc.setCapability(ChromeOptions.CAPABILITY, new ChromeOptions() {
-		{
-		    setExperimentalOption("mobileEmulation", new HashMap<String, Object>() {
-		            {
-		                put("deviceName", properties.getProperty("deviceName"));
-		            }
-		        });
-		    }
-		});
-		
-		
+	
 		WebDriver driver = new ChromeDriver(dc);
 		driver.get(properties.getProperty("siteURL"));
 		
-		try {
-			Thread.sleep(50000);
-		} 
-		catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+  
 		
-		System.out.println(driver.getTitle());
-		
-		LibraryUtils.waitForElementToBeClickable(driver, driver.findElement(By.cssSelector(homeSelectors.locationButton)), 25).click();//click to add to cart button
+		clickOnLocation(driver);
 
 		try {
-			Thread.sleep(10000);
+			Thread.sleep(1000);
 		} 
 		catch (InterruptedException e) {
 			e.printStackTrace();
@@ -128,64 +192,21 @@ public class homePage {
 		LibraryUtils.waitForElementToBeVisible(driver, driver.findElement(By.cssSelector(homeSelectors.like)), 25);//like
 		
 		LibraryUtils.waitForElementToBeVisible(driver, driver.findElement(By.cssSelector(homeSelectors.hobbycraftClub)), 25);//hobbycraftClub
-
-		
-		
-
 		}
 		catch (NoSuchElementException | TimeoutException  ex) {
 	       // System.out.println("Some Elements do loaded");
 	        Assert .fail("Some Elements do loaded");
 
 	    }
-		
-		
-	
-		try {//Test the search process
-			
-		    LibraryUtils.waitForElementToBeClickable(driver, driver.findElement(By.cssSelector(homeSelectors.searchArea)), 25).click();
-			LibraryUtils.waitForElementToBeVisible(driver, driver.findElement(By.cssSelector(homeSelectors.searchTextbox)), 25).sendKeys(properties.getProperty("searchItem"));
-			
-			try {//sleep the thread to see the input
-				Thread.sleep(500);
-			} 
-			catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-			
-			 LibraryUtils.waitForElementToBeClickable(driver, driver.findElement(By.cssSelector(homeSelectors.searchButton)), 25).click();//start the search by clicking the button
-//			LibraryUtils.waitForElementToBeClickable(driver, driver.findElement(By.cssSelector(homeSelectors.searchTextbox)), 1).sendKeys(Keys.ENTER);
-		
-			try {
-				Thread.sleep(30000);
-			} 
-			catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-			
-			LibraryUtils.waitForElementToBeClickable(driver, driver.findElement(By.cssSelector(searchResultSelectors.firstItem)), 25).click();//click to the first element
-//			Actions act = new Actions(driver);
-//			act.moveToElement(driver.findElement(By.xpath(searchResultSelectors.firstItem))).click().build().perform();
-			
-			try {
-			Thread.sleep(30000);
-		} 
-		catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		
-		
-		LibraryUtils.waitForElementToBeClickable(driver, driver.findElement(By.cssSelector(productSelectors.addToCart)), 25).click();//click to add to cart button
 
-		}
-		catch (NoSuchElementException | TimeoutException  ex) {
-		       
-		        Assert .fail("search process has failed");
-
-		    }
-			
 	
-	
+		//Test the search process
+		    searchForItem(driver,properties);
+			if(clickOnProduct(driver,properties)) {
+			addToCart(driver);
+			}
+			else 
+				 System.out.println("Could not add to cart");
 }
 }
 
