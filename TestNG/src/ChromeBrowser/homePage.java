@@ -1,12 +1,16 @@
 package ChromeBrowser;
+
+import java.io.File;
+
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Properties;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -16,6 +20,10 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.testng.ITestContext;
+import org.testng.ITestListener;
+import org.testng.ITestResult;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 
 import Selectors.homeSelectors;
@@ -25,9 +33,15 @@ import Selectors.searchResultSelectors;
 import org.openqa.selenium.interactions.Actions;
 
 import Utils.LibraryUtils;
+import screenshots.screenshotHandle;
 import template.initializingBrowser;
+import org.openqa.selenium.TakesScreenshot;
+import org.apache.commons.io.FileUtils;
 
-public class homePage implements initializingBrowser {
+public class homePage implements initializingBrowser, ITestListener {
+	
+	WebDriver driver ;
+
 	public void clickOnLocation(WebDriver driver)
 	{
 		try {
@@ -112,8 +126,7 @@ public class homePage implements initializingBrowser {
 	    }
 	}
     @Test
-	public void testHome ()
-	{
+	public void testHome () {
 
 	final DesiredCapabilities dc = initializingBrowser.initializeChromeBrowser ();
 		Properties properties = new Properties();
@@ -125,7 +138,7 @@ public class homePage implements initializingBrowser {
 	          e.printStackTrace();
 	          }
 	
-		WebDriver driver = new ChromeDriver(dc);
+	    driver = new ChromeDriver(dc);
 		driver.get(properties.getProperty("siteURL"));
 		
   
@@ -207,6 +220,16 @@ public class homePage implements initializingBrowser {
 			}
 			else 
 				 System.out.println("Could not add to cart");
+			
 }
+    
+   @AfterMethod
+   public void teatDown(ITestResult result) throws IOException 
+   {
+	   if(ITestResult.FAILURE==result.getStatus())
+		   screenshotHandle.takeScreenshot(driver,result.getName() );
+   driver.quit();
+   }
+    
 }
 
