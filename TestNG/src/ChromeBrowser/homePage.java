@@ -58,7 +58,7 @@ public class homePage implements initializingBrowser, ITestListener {
 	{
 		try {
 	            LibraryUtils.waitForElementToBeClickable(driver, driver.findElement(By.cssSelector(homeSelectors.searchArea)), 25).click();
-				LibraryUtils.waitForElementToBeVisible(driver, driver.findElement(By.cssSelector(homeSelectors.searchTextbox)), 25).sendKeys(properties.getProperty("searchItem"));
+				driver.findElement(By.cssSelector(homeSelectors.searchTextbox)).sendKeys(properties.getProperty("searchItem"));
 				
 				try {//sleep the thread to see the input
 					Thread.sleep(500);
@@ -128,9 +128,9 @@ public class homePage implements initializingBrowser, ITestListener {
     @Test
 	public void testHome () {
 
-	final DesiredCapabilities dc = initializingBrowser.initializeChromeBrowser ();
+	        final DesiredCapabilities dc = initializingBrowser.initializeChromeBrowser ();
 		Properties properties = new Properties();
-	       try(FileReader reader =  new FileReader("config")) {
+	        try(FileReader reader =  new FileReader("config")) {
 	           
 	           properties.load(reader);
 	          
@@ -138,7 +138,7 @@ public class homePage implements initializingBrowser, ITestListener {
 	          e.printStackTrace();
 	          }
 	
-	    driver = new ChromeDriver(dc);
+	        driver = new ChromeDriver(dc);
 		driver.get(properties.getProperty("siteURL"));
 		
   
@@ -153,58 +153,59 @@ public class homePage implements initializingBrowser, ITestListener {
 		}
 		
 		try {//Test if the main elements are loaded correctly
+			
+		LibraryUtils.waitForElementToBeVisible(driver, driver.findElement(By.cssSelector(homeSelectors.hobbycraftClub)), 25);//hobbycraftClub (Footer)
 		
-		LibraryUtils.waitForElementToBeVisible(driver, driver.findElement(By.cssSelector(homeSelectors.logo)), 25);//logo
+		driver.findElement(By.cssSelector(homeSelectors.logo));//logo
 		
-		LibraryUtils.waitForElementToBeVisible(driver, driver.findElement(By.cssSelector(homeSelectors.orderIcon)), 25);//The order icon
+	        driver.findElement(By.cssSelector(homeSelectors.orderIcon));//The order icon
 	
-		LibraryUtils.waitForElementToBeVisible(driver, driver.findElement(By.cssSelector(homeSelectors.menu)), 25);//menu
+		driver.findElement(By.cssSelector(homeSelectors.menu));//menu
 		
-		LibraryUtils.waitForElementToBeVisible(driver, driver.findElement(By.cssSelector(homeSelectors.searchArea)), 25);//searchArea
+		driver.findElement(By.cssSelector(homeSelectors.searchArea));//searchArea
 	
-		LibraryUtils.waitForElementToBeVisible(driver, driver.findElement(By.cssSelector(homeSelectors.stores)), 25);//stores
+		driver.findElement(By.cssSelector(homeSelectors.stores));//stores
 		
-		LibraryUtils.waitForElementToBeVisible(driver, driver.findElement(By.cssSelector(homeSelectors.shopNow)), 25);//  shopNow
+		driver.findElement(By.cssSelector(homeSelectors.shopNow));//  shopNow
 
-		LibraryUtils.waitForElementToBeVisible(driver, driver.findElement(By.cssSelector(homeSelectors.easter)), 25);// easter
+		driver.findElement(By.cssSelector(homeSelectors.easter));// easter
 		
-		LibraryUtils.waitForElementToBeVisible(driver, driver.findElement(By.cssSelector(homeSelectors.sewing)), 25);//sewing
+		driver.findElement(By.cssSelector(homeSelectors.sewing));//sewing
 	
-    	LibraryUtils.waitForElementToBeVisible(driver, driver.findElement(By.cssSelector(homeSelectors.paperCraft)), 25);//paperCraft
+    	        driver.findElement(By.cssSelector(homeSelectors.paperCraft));//paperCraft
 		
-		LibraryUtils.waitForElementToBeVisible(driver, driver.findElement(By.cssSelector(homeSelectors.baking)), 25);//baking
+		driver.findElement(By.cssSelector(homeSelectors.baking));//baking
 		
-		LibraryUtils.waitForElementToBeVisible(driver, driver.findElement(By.cssSelector(homeSelectors.kids)), 25);//kids 
+		driver.findElement(By.cssSelector(homeSelectors.kids));//kids 
 
-		LibraryUtils.waitForElementToBeVisible(driver, driver.findElement(By.cssSelector(homeSelectors.knittingAndCrochet)), 25);//knittingAndCrochet
+		driver.findElement(By.cssSelector(homeSelectors.knittingAndCrochet));//knittingAndCrochet
 
-		LibraryUtils.waitForElementToBeVisible(driver, driver.findElement(By.cssSelector(homeSelectors.craftsAndHobbies)), 25);// craftsAndHobbies
+		driver.findElement(By.cssSelector(homeSelectors.craftsAndHobbies));// craftsAndHobbies
 
-    	LibraryUtils.waitForElementToBeVisible(driver, driver.findElement(By.cssSelector(homeSelectors.digitalCutting)), 25);//digitalCutting
+    	        driver.findElement(By.cssSelector(homeSelectors.digitalCutting));//digitalCutting
 
-		LibraryUtils.waitForElementToBeVisible(driver, driver.findElement(By.cssSelector(homeSelectors.artSupplies)), 25);//artSupplies
+		driver.findElement(By.cssSelector(homeSelectors.artSupplies));//artSupplies
 
-		LibraryUtils.waitForElementToBeVisible(driver, driver.findElement(By.cssSelector(homeSelectors.decorAndFrames)), 25);//decorAndFrames
+		driver.findElement(By.cssSelector(homeSelectors.decorAndFrames));//decorAndFrames
 
-		LibraryUtils.waitForElementToBeVisible(driver, driver.findElement(By.cssSelector(homeSelectors.wedding)), 25);//wedding
+		driver.findElement(By.cssSelector(homeSelectors.wedding));//wedding
 		
-		LibraryUtils.waitForElementToBeVisible(driver, driver.findElement(By.cssSelector(homeSelectors.occations)), 25);//occations
+		driver.findElement(By.cssSelector(homeSelectors.occations));//occations
 
-		LibraryUtils.waitForElementToBeVisible(driver, driver.findElement(By.cssSelector(homeSelectors.offers)), 25);//offers
+		driver.findElement(By.cssSelector(homeSelectors.offers));//offers
 		
-		LibraryUtils.waitForElementToBeVisible(driver, driver.findElement(By.cssSelector(homeSelectors.ideas)), 25);//ideas
+		driver.findElement(By.cssSelector(homeSelectors.ideas));//ideas
 
-		LibraryUtils.waitForElementToBeVisible(driver, driver.findElement(By.cssSelector(homeSelectors.mainImage)), 25);//mainImage
+		driver.findElement(By.cssSelector(homeSelectors.mainImage));//mainImage
 		
-		LibraryUtils.waitForElementToBeVisible(driver, driver.findElement(By.cssSelector(homeSelectors.clearance)), 25);//clearance
+		driver.findElement(By.cssSelector(homeSelectors.clearance));//clearance
 
-		LibraryUtils.waitForElementToBeVisible(driver, driver.findElement(By.cssSelector(homeSelectors.newArrivals)), 25);//newArrivals
+		driver.findElement(By.cssSelector(homeSelectors.newArrivals));//newArrivals
 		
-		LibraryUtils.waitForElementToBeVisible(driver, driver.findElement(By.cssSelector(homeSelectors.trustpiolt)), 25);//trustpiolt
+		driver.findElement(By.cssSelector(homeSelectors.trustpiolt));//trustpiolt
 
-		LibraryUtils.waitForElementToBeVisible(driver, driver.findElement(By.cssSelector(homeSelectors.like)), 25);//like
+		driver.findElement(By.cssSelector(homeSelectors.like));//like
 		
-		LibraryUtils.waitForElementToBeVisible(driver, driver.findElement(By.cssSelector(homeSelectors.hobbycraftClub)), 25);//hobbycraftClub
 		}
 		catch (NoSuchElementException | TimeoutException  ex) {
 	       // System.out.println("Some Elements do loaded");
