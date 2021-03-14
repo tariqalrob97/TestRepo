@@ -128,9 +128,9 @@ public class homePage implements initializingBrowser, ITestListener {
     @Test
 	public void testHome () {
 
-	        final DesiredCapabilities dc = initializingBrowser.initializeChromeBrowser ();
+	final DesiredCapabilities dc = initializingBrowser.initializeChromeBrowser ();
 		Properties properties = new Properties();
-	        try(FileReader reader =  new FileReader("config")) {
+	       try(FileReader reader =  new FileReader("config")) {
 	           
 	           properties.load(reader);
 	          
@@ -138,7 +138,7 @@ public class homePage implements initializingBrowser, ITestListener {
 	          e.printStackTrace();
 	          }
 	
-	        driver = new ChromeDriver(dc);
+	    driver = new ChromeDriver(dc);
 		driver.get(properties.getProperty("siteURL"));
 		
   
@@ -167,34 +167,8 @@ public class homePage implements initializingBrowser, ITestListener {
 		driver.findElement(By.cssSelector(homeSelectors.stores));//stores
 		
 		driver.findElement(By.cssSelector(homeSelectors.shopNow));//  shopNow
-
-		driver.findElement(By.cssSelector(homeSelectors.easter));// easter
 		
 		driver.findElement(By.cssSelector(homeSelectors.sewing));//sewing
-	
-    	        driver.findElement(By.cssSelector(homeSelectors.paperCraft));//paperCraft
-		
-		driver.findElement(By.cssSelector(homeSelectors.baking));//baking
-		
-		driver.findElement(By.cssSelector(homeSelectors.kids));//kids 
-
-		driver.findElement(By.cssSelector(homeSelectors.knittingAndCrochet));//knittingAndCrochet
-
-		driver.findElement(By.cssSelector(homeSelectors.craftsAndHobbies));// craftsAndHobbies
-
-    	        driver.findElement(By.cssSelector(homeSelectors.digitalCutting));//digitalCutting
-
-		driver.findElement(By.cssSelector(homeSelectors.artSupplies));//artSupplies
-
-		driver.findElement(By.cssSelector(homeSelectors.decorAndFrames));//decorAndFrames
-
-		driver.findElement(By.cssSelector(homeSelectors.wedding));//wedding
-		
-		driver.findElement(By.cssSelector(homeSelectors.occations));//occations
-
-		driver.findElement(By.cssSelector(homeSelectors.offers));//offers
-		
-		driver.findElement(By.cssSelector(homeSelectors.ideas));//ideas
 
 		driver.findElement(By.cssSelector(homeSelectors.mainImage));//mainImage
 		
