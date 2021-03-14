@@ -102,33 +102,33 @@ public class accessTheAccount {
 	     driver.findElement(By.cssSelector(accountSelectors.loginButton)).click();
 	}
 	
-//@Test 
-//public void registerationTest()
-//{
-//	final DesiredCapabilities dc = initializingBrowser.initializeChromeBrowser ();
-//	Properties properties = new Properties();
-//       try(FileReader reader =  new FileReader("config")) {
-//           
-//           properties.load(reader);
-//          
-//          }catch (Exception e) {;
-//          e.printStackTrace();
-//          }
-//
-//     WebDriver driver = new ChromeDriver(dc);
-//     driver.get(properties.getProperty("siteURL"));
-//     try {
-//			Thread.sleep(30000);
-//		} 
-//		catch (InterruptedException e) {
-//			e.printStackTrace();
-//		}
-//     Setup.clickOnLocation(driver);
-//     goToSigninRegisterPage(driver);
-//     createAccount(driver);
-//     
-//
-//}
+@Test 
+public void registerationTest()
+{
+	final DesiredCapabilities dc = initializingBrowser.initializeChromeBrowser ();
+	Properties properties = new Properties();
+      try(FileReader reader =  new FileReader("config")) {
+          
+          properties.load(reader);
+         
+         }catch (Exception e) {;
+         e.printStackTrace();
+         }
+
+    WebDriver driver = new ChromeDriver(dc);
+    driver.get(properties.getProperty("siteURL"));
+    try {
+			Thread.sleep(30000);
+		} 
+		catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+    Setup.clickOnLocation(driver);
+    goToSigninRegisterPage(driver);
+    createAccount(driver);
+    
+
+}
 	
 	@Test
 	public void loginTest()
