@@ -40,19 +40,7 @@ import org.apache.commons.io.FileUtils;
 
 public class homePage implements initializingBrowser, ITestListener {
 	
-	WebDriver driver ;
-
-	public void clickOnLocation(WebDriver driver)
-	{
-		try {
-			Thread.sleep(50000);
-		} 
-		catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		LibraryUtils.waitForElementToBeClickable(driver, driver.findElement(By.cssSelector(homeSelectors.locationButton)), 25).click();//click to add to cart button
-	}
-	
+	WebDriver driver ;	
 	
 	public void searchForItem(WebDriver driver, Properties properties)
 	{
@@ -139,11 +127,10 @@ public class homePage implements initializingBrowser, ITestListener {
 	          }
 	
 	    driver = new ChromeDriver(dc);
-		driver.get(properties.getProperty("siteURL"));
-		
-  
-		
-		clickOnLocation(driver);
+	    driver.get(properties.getProperty("siteURL"));
+	
+	    
+		Setup.clickOnLocation(driver);
 
 		try {
 			Thread.sleep(1000);
@@ -153,12 +140,12 @@ public class homePage implements initializingBrowser, ITestListener {
 		}
 		
 		try {//Test if the main elements are loaded correctly
-			
+		
 		LibraryUtils.waitForElementToBeVisible(driver, driver.findElement(By.cssSelector(homeSelectors.hobbycraftClub)), 25);//hobbycraftClub (Footer)
 		
 		driver.findElement(By.cssSelector(homeSelectors.logo));//logo
 		
-	        driver.findElement(By.cssSelector(homeSelectors.orderIcon));//The order icon
+	    driver.findElement(By.cssSelector(homeSelectors.orderIcon));//The order icon
 	
 		driver.findElement(By.cssSelector(homeSelectors.menu));//menu
 		
@@ -167,6 +154,7 @@ public class homePage implements initializingBrowser, ITestListener {
 		driver.findElement(By.cssSelector(homeSelectors.stores));//stores
 		
 		driver.findElement(By.cssSelector(homeSelectors.shopNow));//  shopNow
+
 		
 		driver.findElement(By.cssSelector(homeSelectors.sewing));//sewing
 
